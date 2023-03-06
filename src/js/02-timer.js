@@ -11,6 +11,9 @@ const hoursRef = document.querySelector('[data-hours]');
 const minutesRef = document.querySelector('[data-minutes]');
 const secondsRef = document.querySelector('[data-seconds]');
 
+Notify.init({
+  width: '280px',
+  position: 'center-top' })
 
 const options = {
   enableTime: true,
@@ -40,19 +43,24 @@ let formatDate = null;
 btnStartRef.addEventListener('click', onBtnStart);
 
 const timer = {
-  start(targetDate) {
-    const targetTime = targetDate.getTime();
-
-    setInterval(() => {
+  start() {
+    const startTime = Date.now();
+    timerId = setInterval(() => {
       const currentTime = Date.now();
-      const remainingTime = targetTime - currentTime;
-      const timeComponents = convertMs(remainingTime);
-
-      daysRef.innerText = timeComponents.days;
-      hoursRef.innerText = timeComponents.hours;
-      minutesRef.innerText = timeComponents.minutes;
-      secondsRef.innerText = timeComponents.seconds;
+      const deltaTime = targetDate - currentTime;
+      if (deltaTime < 0) {
+        clearInterval(timerId);
+        return;
+      }
+      const timeComponents = convertMs(deltaTime);
+      daysRef.textContent = timeComponents.days;
+      hoursRef.textContent = timeComponents.hours;
+      minutesRef.textContent = timeComponents.minutes;
+      secondsRef.textContent = timeComponents.seconds;
     }, 1000);
+  },
+  stop() {
+    clearInterval(timerId);
   },
 };
 
