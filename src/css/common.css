@@ -55,3 +55,8 @@ img {
         cursor: pointer;
         transition: background-color 0.3s;
       } */
+
+
+.red {
+  color: red;
+}

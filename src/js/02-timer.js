@@ -28,8 +28,10 @@ const options = {
           targetDate = null;
           btnStartRef.disabled = true;
 
-      } else {targetDate = selectedDate;
-      btnStartRef.disabled = false;}
+      } else {
+      targetDate = selectedDate;
+      btnStartRef.disabled = false;
+    }
   },
 };
 
@@ -86,6 +88,14 @@ function convertMs(ms) {
   // Remaining seconds
   const seconds = pad(Math.floor((((ms % day) % hour) % minute) / second));
 // console.log(days, hours, minutes, seconds);
+  
+  if (ms < 60000) {
+    // за одну хвилину до кінця відліку цифри стають червоними
+    daysRef.classList.add('red');
+    hoursRef.classList.add('red');
+    minutesRef.classList.add('red');
+    secondsRef.classList.add('red');
+  }
     return { days, hours, minutes, seconds };
     
 }
