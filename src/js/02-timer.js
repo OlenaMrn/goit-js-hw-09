@@ -16,7 +16,7 @@ Notify.init({
   position: 'center-top'
 })
   
-targetDate = null;
+let targetDate = null;
 
 const options = {
   enableTime: true,
