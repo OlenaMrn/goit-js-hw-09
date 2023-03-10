@@ -50,7 +50,7 @@ const timer = {
     timerId = setInterval(() => {
       const currentTime = Date.now();
       const deltaTime = targetDate - currentTime;
-      if (deltaTime < 0) {
+      if (deltaTime <= 0) {
         clearInterval(timerId);
         return;
       }
