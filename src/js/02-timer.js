@@ -13,7 +13,10 @@ const secondsRef = document.querySelector('[data-seconds]');
 
 Notify.init({
   width: '280px',
-  position: 'center-top' })
+  position: 'center-top'
+})
+  
+targetDate = null;
 
 const options = {
   enableTime: true,
